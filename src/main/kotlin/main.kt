@@ -13,6 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
 
 fun main() = Window {
+    val mimic = Mimic()
+    mimic.processMimicCharacterSet()
+    var mimicText by remember { mutableStateOf(TextFieldValue("")) }
+    mimicText = TextFieldValue(mimic.mimicCharacters)
+
     var clickCode by remember { mutableStateOf(TextFieldValue("")) }
     var output by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -25,7 +30,7 @@ fun main() = Window {
             }
             Row(rowModifier) {
                 OutlinedTextField(modifier = inputModifier.align(Alignment.Top),
-                    value = clickCode,
+                    value = mimicText,//   clickCode,
                     onValueChange = {
                         clickCode = it
                     },
